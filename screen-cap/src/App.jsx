@@ -1,4 +1,5 @@
 import React from "react";
+const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
 
 import "./App.css";
 
