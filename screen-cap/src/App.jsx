@@ -22,9 +22,14 @@ function App() {
       alert("Oops! Something went wrong with that query, let's try again!");
     } else {
       setCurrentImage(json.url);
+      setPrevImages((prevState) => {
+        return [...prevState, json.url];
+      });
       reset();
     }
   };
+
+  const [prevImages, setPrevImages] = useState([]);
 
   const submitForm = () => {
     let defaultValues = {
