@@ -2,6 +2,7 @@ import React, { useState } from "react";
 const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
 import "./App.css";
 import APIForm from "./components/APIForm";
+import Gallery from "./components/Gallery";
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -116,6 +117,9 @@ function App() {
       </div>
 
       <br></br>
+      <div className="container">
+        <Gallery images={prevImages} />
+      </div>
     </div>
   );
 }
