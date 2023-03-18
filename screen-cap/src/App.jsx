@@ -27,6 +27,7 @@ function App() {
         return [...prevState, json.url];
       });
       reset();
+      getQuota();
     }
   };
 
@@ -73,10 +74,32 @@ function App() {
       height: "",
     });
   };
+  const [quota, setQuota] = useState({
+    limit: "",
+    remaining: "",
+    reset: "",
+  });
+
+  const getQuota = async () => {
+    let response = await fetch(
+      `https://api.apiflash.com/v1/urltoimage/quota?access_key=${ACCESS_KEY}`
+    );
+    let json = await response.json();
+    console.log(json);
+    setQuota(json);
+  };
 
   return (
     <div className="whole-page">
       <h1>Build Your Own Screenshot! 📸</h1>
+      {quota ? (
+        <p className="quota">
+          {" "}
+          Remaining API calls: {quota.remaining} out of {quota.limit}
+        </p>
+      ) : (
+        <p></p>
+      )}
       <APIForm
         inputs={inputs}
         handleChange={(event) => {
